@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global CSS Variables for Premium Sci-Fi Theme */
+:root {
+  /* Colors */
+  --bg: #0a0f14;
+  --panel: #0f1720;
+  --glass: rgba(255, 255, 255, 0.04);
+  --neon-primary: #00e5ff;
+  --neon-accent: #7c4dff;
+  --neon-warn: #ff6b35;
+  --text-primary: #e6f7ff;
+  --muted: #99a3ad;
+  --glass-border: rgba(0, 229, 255, 0.12);
+
+  /* Motion & Timing */
+  --anim-fast: 160ms;
+  --anim-medium: 320ms;
+  --anim-slow: 680ms;
+  --ease-sci-fi: cubic-bezier(0.16, 0.84, 0.26, 1);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-bg text-text-primary font-body antialiased;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Ensure focus outlines are visible for accessibility */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-neon-primary ring-offset-2 ring-offset-bg;
+  }
+
+  /* Smooth scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-panel;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-glass-border rounded-full;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-neon-primary;
+  }
+}
+
+@layer utilities {
+  /* Glass morphism utility */
+  .glass-panel {
+    background: var(--glass);
+    backdrop-filter: blur(24px);
+    border: 1px solid var(--glass-border);
+    @apply rounded-xl;
+  }
+
+  /* Neon glow text */
+  .neon-glow {
+    text-shadow: 0 0 10px var(--neon-primary), 0 0 20px var(--neon-primary),
+      0 0 30px var(--neon-primary);
+  }
+
+  /* Premium gradient text */
+  .gradient-text {
+    background: linear-gradient(90deg, var(--neon-primary) 0%, var(--neon-accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Floating animation utility */
+  .animate-float-delayed {
+    animation: float 6s ease-in-out 1s infinite;
+  }
+}
+
+/* Loading skeleton shimmer effect */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.skeleton {
+  animation: shimmer 2s infinite linear;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.02) 0%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  background-size: 1000px 100%;
+}
+
+/* Honeycomb pattern background */
+.honeycomb-bg {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='104' viewBox='0 0 60 104' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l30 17.32v34.64L30 69.28 0 51.96V17.32L30 0zm0 104l30-17.32V51.96L30 34.64 0 51.96v34.64L30 104z' fill='%2300e5ff' fill-opacity='0.02' fill-rule='evenodd'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+/* Accessibility: Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

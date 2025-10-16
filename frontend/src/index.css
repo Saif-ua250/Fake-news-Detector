@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global Sci-Fi Styling */
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-cyber-darker text-white antialiased;
+    font-family: 'Rajdhani', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-cyber-dark;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-cyber-blue rounded-full;
+    box-shadow: 0 0 6px rgba(0, 212, 255, 0.5);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-cyber-cyan;
+  }
+}
+
+@layer components {
+  /* Glassmorphism Card */
+  .glass-card {
+    @apply backdrop-blur-md bg-white/5 border border-cyber-blue/30 rounded-lg;
+    box-shadow: 0 8px 32px 0 rgba(0, 212, 255, 0.15);
+  }
+
+  /* Holographic Border Effect */
+  .holo-border {
+    @apply relative;
+    background: linear-gradient(45deg, 
+      transparent 30%, 
+      rgba(0, 212, 255, 0.3) 50%, 
+      transparent 70%
+    );
+    background-size: 200% 200%;
+    animation: holo-shift 3s ease infinite;
+  }
+
+  @keyframes holo-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  /* Neon Glow Text */
+  .neon-text {
+    text-shadow: 
+      0 0 7px rgba(0, 212, 255, 0.8),
+      0 0 10px rgba(0, 212, 255, 0.6),
+      0 0 21px rgba(0, 212, 255, 0.4),
+      0 0 42px rgba(0, 212, 255, 0.2);
+  }
+
+  /* Data Grid Background */
+  .data-grid {
+    background-image: 
+      linear-gradient(rgba(0, 212, 255, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 212, 255, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+}
+
+@layer utilities {
+  /* Animation delays */
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+  .animation-delay-600 {
+    animation-delay: 600ms;
+  }
+}
